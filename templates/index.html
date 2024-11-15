@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distribución Normal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Distribución Normal</h1>
+        <form method="POST">
+            <label for="media">Media:</label>
+            <input type="text" id="media" name="media" value="{{ media if media else '' }}" required>
+
+            <label for="desviacion">Desviación Estándar:</label>
+            <input type="text" id="desviacion" name="desviacion" value="{{ desviacion if desviacion else '' }}" required>
+
+            <button type="submit">Generar Gráfico</button>
+        </form>
+
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+
+        {% if img_data %}
+            <h2>Gráfico de la Distribución Normal</h2>
+            <img src="data:image/png;base64,{{ img_data }}" alt="Distribución Normal">
+            
+            <h3>Resultados de los cálculos</h3>
+            <p><strong>Media Ingresada:</strong> {{ media }}</p>
+            <p><strong>Desviación Estándar Ingresada:</strong> {{ desviacion }}</p>
+            <p><strong>Media Calculada de las Muestras:</strong> {{ calculada_media }}</p>
+            <p><strong>Desviación Estándar Calculada de las Muestras:</strong> {{ calculada_desviacion }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
